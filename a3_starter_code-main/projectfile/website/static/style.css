@@ -1,0 +1,111 @@
+.navbar {
+    background-color: #ff7e14;
+    padding: 15px 0;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.navbar-toggler-icon {
+    color: #fff;
+}
+
+.nav-link {
+    color: #B37B14;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    color: #fff;
+}
+
+.form-control[type="search"] {
+    border: none;
+    border-radius: 0;
+}
+
+.btn-outline-primary {
+    border-color: #B37B14;
+    color: #B37B14;
+}
+
+footer {
+    color: #fff;
+    padding: 40px 0;
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+h1 {
+    color: #B37B14;
+    font-size: 3rem;
+    margin-top: 0;
+    padding: 50px;
+}
+
+p {
+    color: #333;
+}
+
+.card {
+    border: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.btn-outline-info {
+    border-color: #ffab66;
+    color: #ffab66;
+}
+
+.offcanvas-header {
+    background-color: #333;
+    color: #fff;
+    border: none;
+}
+
+.offcanvas-title {
+    color: #B37B14;
+}
+
+.dropdown-menu {
+    background-color: #333;
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #ffab66;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    .navbar-nav {
+        margin-top: 10px;
+    }
+}

@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
 
 
@@ -21,3 +21,23 @@ class RegisterForm(FlaskForm):
 
     #submit button
     submit = SubmitField("Register")
+
+#User comment
+class CommentForm(FlaskForm):
+    text = TextAreaField('Comment', [InputRequired()])
+    submit = SubmitField('Create')
+
+# Create Music Show Form
+class MusicShowForm(FlaskForm):
+    name = StringField("Enter show name...", validators=[InputRequired()])
+    description = TextAreaField("Enter show's description", validators = [InputRequired()])
+    image = StringField('Show Image', validators=[InputRequired()])
+    genre = StringField('Genre', validators=[InputRequired()])
+    status = StringField('Status', validators=[InputRequired()])
+    start_date = DateTimeField('Show Start Date', validators=[InputRequired()])
+    end_date = DateTimeField('Show End Date', validators=[InputRequired()])
+    artists = StringField('Show Artists', validators=[InputRequired()])
+    location = StringField('Location', validators=[InputRequired()])
+    num_tickets_avaliable = IntegerField('Number of Tickets Avaliable', validators=[InputRequired()])
+    promocode = IntegerField('Promocode', validators=[InputRequired()])
+    submit = SubmitField("Create")
