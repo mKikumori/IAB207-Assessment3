@@ -9,6 +9,13 @@ class MusicShow(db.Model):
     description = db.Column(db.String(250))
     image = db.Column(db.String(400))
     genre = db.Column(db.String(20))
+    status = db.Column(db.String(25))
+    start_date = db.Column(db.String(50))
+    end_date = db.Column(db.String(50))
+    artists = db.Column(db.String(150))
+    location = db.Column(db.String(150))
+    num_tickets_avaliable = db.Column(db.Integer)
+    promocode = db.Column(db.Integer)
 
     comments = db.relationship('Comment', backref='musicShow')
 

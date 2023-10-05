@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from .models import Comment, MusicShow
 from .forms import MusicShowForm, CommentForm
 from . import db
+import os
+from werkzeug.utils import secure_filename
 
 # name - first argument is the blueprint name 
 # import name - second argument - helps identify the root url for it 
@@ -18,7 +20,8 @@ def create():
     print('Method type: ', request.method)
     form = MusicShowForm()
     if form.validate_on_submit():
-        music_show = MusicShow(name=form.name.data, description=form.description.data, image=form.image.data, 
+        db_file_path = check_upload_file(form)
+        music_show = MusicShow(name=form.name.data, description=form.description.data, image=db_file_path, 
                                genre=form.genre.data, status=form.status.data, start_date=form.start_date.data, 
                                end_date=form.end_date.data, artists=form.artists.data, location=form.location.data, 
                                num_tickets_avaliable=form.num_tickets_avaliable.data, promocode=form.promocode.data)
@@ -40,3 +43,10 @@ def comment(id):
       print(f"The following comment has been posted", "success")
   # notice the signature of url_for
   return redirect(url_for('music_show.show', id=id))
+
+def check_upload_file(form):
+  #get file data from form  
+  fp = form.image.data
+  filename = fp.filename
+  #get the current path of the module file… store image file relative to this path  
+  BASE_PATH = os.path.dirname(__file__)

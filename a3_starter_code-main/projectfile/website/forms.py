@@ -2,7 +2,9 @@
 from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
+from flask_wtf.file import FileRequired, FileField, FileAllowed
 
+ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
 
 #creates the login information
 class LoginForm(FlaskForm):
@@ -31,7 +33,7 @@ class CommentForm(FlaskForm):
 class MusicShowForm(FlaskForm):
     name = StringField("Enter show name...", validators=[InputRequired()])
     description = TextAreaField("Enter show's description", validators = [InputRequired()])
-    image = StringField('Show Image', validators=[InputRequired()])
+    image = FileField('Show Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports pnj, jpg, JPG, PNG')])
     genre = StringField('Genre', validators=[InputRequired()])
     status = StringField('Status', validators=[InputRequired()])
     start_date = DateTimeField('Show Start Date', validators=[InputRequired()])

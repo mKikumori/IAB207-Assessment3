@@ -6,60 +6,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col col-lg-5">
-            <div id="carouselIndicators"
-                class="carousel slide"
-                style="max-width: 750px; max-height: 550px;">
-                <div class="carousel-indicators">
-                    <button type="button"
-                        data-bs-target="#carouselIndicators"
-                        data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button"
-                        data-bs-target="#carouselIndicators"
-                        data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button"
-                        data-bs-target="#carouselIndicators"
-                        data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img
-                            src="{{music_show.image}}"
-                            class="d-block w-100"
-                            alt="showImage1">
-                    </div>
-                    <div class="carousel-item">
-                        <img
-                            src="https://www.rollingstone.com/wp-content/uploads/2022/12/goo-goo-dolls-tour.jpg"
-                            class="d-block w-100"
-                            alt="showImgae2">
-                    </div>
-                    <div class="carousel-item">
-                        <img
-                            src="https://www.thepitchkc.com/content/uploads/2022/08/s/q/goo-goo-dolls-fb.jpg"
-                            class="d-block w-100"
-                            alt="showImage3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev"
-                    type="button"
-                    data-bs-target="#carouselIndicators"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"
-                        aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next"
-                    type="button"
-                    data-bs-target="#carouselIndicators"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"
-                        aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            <img
+                src="{{music_show.image}}"
+                class="d-block w-100"
+                alt="showImage1">
             <div>
                 <h1>Show Deatils</h1>
                 <h4 style="font-size: medium; color: #ffff;">
@@ -202,19 +152,14 @@
                     <div>
                         <h1>Enter your comments</h1>
                     </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            {{render_form(form,"/music_shows/{0}/comment".format(music_show.id))}}
-
-                            {% for comment in music_show.comments %}
-
-                            <b>{{comment.user}} <span class="ml-2 text-muted">January 2024</span></b>
-                                
-                            <p>{{comment.text}}</p>
-
-                            {% endfor %}
-
-                        </div>
+                    <div class="row border-bottom"> 
+                        {{ render_form(form,"/music_shows/{0}/comment".format(music_show.id)) }} 
+                        {% for comment in music_show.comments %}
+                        <div class="col-md-12">  
+                          <b>{{ comment.user }} <span class="ml-2 text-muted">January 2024</span></b>
+                          <p>{{ comment.text }}</p>  
+                        </div> 
+                        {% endfor %} 
                     </div>
                 </div>
             </div>
