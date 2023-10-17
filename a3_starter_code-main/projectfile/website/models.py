@@ -17,7 +17,7 @@ class MusicShow(db.Model):
     num_tickets_avaliable = db.Column(db.Integer)
     promocode = db.Column(db.Integer)
 
-    comments = db.relationship('Comment', backref='musicShow')
+    comments = db.relationship('Comment', backref='music_show')
 
     def __repr__(self):
         return f"Name: {self.name}"

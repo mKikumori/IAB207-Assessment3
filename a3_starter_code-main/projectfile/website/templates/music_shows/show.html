@@ -1,169 +1,139 @@
-{% extends 'base.html' %}
-
-{% from 'bootstrap5/form.html' import render_form %}
-
+{% extends 'base.html' %} {% from 'bootstrap5/form.html' import render_form %}
 {% block content %}
 <div class="container-fluid">
-    <div class="row">
-        <div class="col col-lg-5">
-            <img
-                src="{{music_show.image}}"
-                class="d-block w-100"
-                alt="showImage1">
-            <div>
-                <h1>Show Deatils</h1>
-                <h4 style="font-size: medium; color: #ffff;">
-                    {{music_show.description}}
-                </h4>
-            </div>
-        </div>
-        <div class="col gap-1 col-lg-7">
-            <div class="d-grid gap-2 d-md-block">
-                <div class="overflow-auto"
-                    style="max-width: 10000px; max-height: 790px;">
-                    <div>
-                        <h1>{{music_show.name}}</h1>
-                        <a class="btn btn-warning" href="#"
-                            role="button">Edit</a>
-                        <p>
-                            - Show date and time
-                        </p>
-                        <p>
-                            - Show location
-                        </p>
-                        <p>
-                            - Show Artists
-                        </p>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <a class="btn btn-warning"
-                            role="button" href="#">Buy Tickets</a>
-                    </div>
-                    <div>
-                        <p>
-                            - Ticket Type 1 (Closest to Stage):
-                            $50.00
-                        </p>
-                        <p>
-                            - Ticket Type 2 (Near Food Stalls):
-                            $45.00
-                        </p>
-                        <p>
-                            - Ticket Type 3: $30.00
-                        </p>
-                    </div>
-                    <div
-                        class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <nav class="navbar bg-body-tertiary">
-                            <div class="container-fluid">
-                                <form class="d-flex"
-                                    role="search">
-                                    <input
-                                        class="form-control me-2"
-                                        type="search"
-                                        placeholder="Enter Promocode"
-                                        aria-label="Search">
-                                    <button
-                                        class="btn btn-warning"
-                                        type="submit">Search</button>
-                                </form>
-                            </div>
-                        </nav>
-                    </div>
-                    <div>
-                        <h1>Other Shows</h1>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col col-lg-4">
-                                <div class="card"
-                                    style="width: 18rem;">
-                                    <img
-                                        src="https://freerangestock.com/sample/129484/live-music-concert-with-audience.jpg"
-                                        class="card-img-top"
-                                        alt="showImage">
-                                    <h5 class="card-title">Show
-                                        Name</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            Event Date -
-                                            Location -
-                                            Event artist - Event
-                                            status
-                                        </p>
-                                        <div
-                                            class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <a href="#"
-                                                class="btn btn-outline-info btn-sm">Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col col-lg-4">
-                                <div class="card"
-                                    style="width: 18rem;">
-                                    <img
-                                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg/1200px-Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
-                                        class="card-img-top"
-                                        alt="showImage">
-                                    <h5 class="card-title">Show
-                                        Name</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            Event Date -
-                                            Location -
-                                            Event artist - Event
-                                            status
-                                        </p>
-                                        <div
-                                            class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <a href="#"
-                                                class="btn btn-outline-info btn-sm">Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col col-lg-4">
-                                <div class="card"
-                                    style="width: 18rem;">
-                                    <img
-                                        src="https://koreabyme.com/wp-content/uploads/2020/12/Slide1-8-1024x683.jpg"
-                                        class="card-img-top"
-                                        alt="ShowImage">
-                                    <h5 class="card-title">Show
-                                        Name</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">
-                                            Event Date -
-                                            Location -
-                                            Event artist - Event
-                                            status
-                                        </p>
-                                        <div
-                                            class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                            <a href="#"
-                                                class="btn btn-outline-info btn-sm">Details</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h1>Enter your comments</h1>
-                    </div>
-                    <div class="row border-bottom"> 
-                        {{ render_form(form,"/music_shows/{0}/comment".format(music_show.id)) }} 
-                        {% for comment in music_show.comments %}
-                        <div class="col-md-12">  
-                          <b>{{ comment.user }} <span class="ml-2 text-muted">January 2024</span></b>
-                          <p>{{ comment.text }}</p>  
-                        </div> 
-                        {% endfor %} 
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col col-lg-5">
+      <img src="{{music_show.image}}" class="d-block w-100" alt="showImage1" />
+      <div>
+        <h1>Show Deatils</h1>
+        <h4 style="font-size: medium; color: #ffff">
+          {{music_show.description}}
+        </h4>
+      </div>
     </div>
+    <div class="col gap-1 col-lg-7">
+      <div class="d-grid gap-2 d-md-block">
+        <div
+          class="overflow-auto"
+          style="max-width: 10000px; max-height: 790px"
+        >
+          <div>
+            <h1>{{music_show.name}}</h1>
+            <a class="btn btn-warning" href="#" role="button">Edit</a>
+            <p>- Show date and time</p>
+            <p>- Show location</p>
+            <p>- Show Artists</p>
+          </div>
+          <div class="d-grid gap-2">
+            <a class="btn btn-warning" role="button" href="#">Buy Tickets</a>
+          </div>
+          <div>
+            <p>- Ticket Type 1 (Closest to Stage): $50.00</p>
+            <p>- Ticket Type 2 (Near Food Stalls): $45.00</p>
+            <p>- Ticket Type 3: $30.00</p>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <nav class="navbar bg-body-tertiary">
+              <div class="container-fluid">
+                <form class="d-flex" role="search">
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Enter Promocode"
+                    aria-label="Search"
+                  />
+                  <button class="btn btn-warning" type="submit">Search</button>
+                </form>
+              </div>
+            </nav>
+          </div>
+          <div>
+            <h1>Other Shows</h1>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col col-lg-4">
+                <div class="card" style="width: 18rem">
+                  <img
+                    src="https://freerangestock.com/sample/129484/live-music-concert-with-audience.jpg"
+                    class="card-img-top"
+                    alt="showImage"
+                  />
+                  <h5 class="card-title">Show Name</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                      Event Date - Location - Event artist - Event status
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <a href="#" class="btn btn-outline-info btn-sm"
+                        >Details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-lg-4">
+                <div class="card" style="width: 18rem">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg/1200px-Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
+                    class="card-img-top"
+                    alt="showImage"
+                  />
+                  <h5 class="card-title">Show Name</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                      Event Date - Location - Event artist - Event status
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <a href="#" class="btn btn-outline-info btn-sm"
+                        >Details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col col-lg-4">
+                <div class="card" style="width: 18rem">
+                  <img
+                    src="https://koreabyme.com/wp-content/uploads/2020/12/Slide1-8-1024x683.jpg"
+                    class="card-img-top"
+                    alt="ShowImage"
+                  />
+                  <h5 class="card-title">Show Name</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                      Event Date - Location - Event artist - Event status
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                      <a href="#" class="btn btn-outline-info btn-sm"
+                        >Details</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h1>Enter your comments</h1>
+          </div>
+          <div class="row border-bottom">
+            {{render_form(form,"/music_shows/{0}/comment".format(music_show.id))}}
+            {% for comment in music_show.comments %}
+            <div class="col-md-12">
+              <b
+                >{{ comment.user }}
+                <span class="ml-2 text-muted"
+                  >{{comment.created_at.strftime("%d/%m/%Y at %H:%M %p")}}</span
+                ></b
+              >
+              <p>{{ comment.text }}</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

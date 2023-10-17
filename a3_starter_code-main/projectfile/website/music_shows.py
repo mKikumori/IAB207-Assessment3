@@ -35,12 +35,14 @@ def create():
 def comment(id):
   #here the form is created  form = CommentForm()
   form = CommentForm()
+  
   music_show = db.session.scalar(db.select(MusicShow).where(MusicShow.id==id))
+
   if form.validate_on_submit():	#this is true only in case of POST method
       comment = Comment(text=form.text.data, music_show=music_show)
-      db.session.add(comment) 
-      db.session.commit() 
-      print(f"The following comment has been posted", "success")
+      db.session.add(comment)
+      db.session.commit()
+      print('Your comment has been added', 'success') 
   # notice the signature of url_for
   return redirect(url_for('music_show.show', id=id))
 
@@ -50,3 +52,10 @@ def check_upload_file(form):
   filename = fp.filename
   #get the current path of the module file… store image file relative to this path  
   BASE_PATH = os.path.dirname(__file__)
+  #upload file location – directory of this file/static/image
+  upload_path = os.path.join(BASE_PATH, 'static/image', secure_filename(filename))
+  #store relative path in DB as image location in HTML is relative
+  db_upload_path = '/static/image/' + secure_filename(filename)
+  #save the file and return the db upload path
+  fp.save(upload_path)
+  return db_upload_path
