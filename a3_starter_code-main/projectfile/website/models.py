@@ -51,3 +51,21 @@ class Comment(db.Model):
     # string print method
     def __repr__(self):
         return f"Comment: {self.text}"
+    
+    
+class Booking(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    ticket_type = db.Column(db.Integer)
+    ticket_number = db.Column(db.Integer, nullable = False)
+    card_number = db.Column(db.Integer, nullable = False)
+    CVS = db.Column(db.Integer, nullable = False)
+    expiry_date = db.Column(db.String(10), nullable = False)
+    emailid = db.Column(db.String(100))
+    
+    users = db.relationship('User', backref='Booking')
+    
+    def __repr__(self):
+        return f"Name: {self.name}"
+        
