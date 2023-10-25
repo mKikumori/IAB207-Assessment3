@@ -33,6 +33,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
+
+    booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
     
     # string print method
     def __repr__(self):
