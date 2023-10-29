@@ -127,73 +127,6 @@
             </nav>
           </div>
           <div>
-            <h1>Other Shows</h1>
-          </div>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col col-lg-4">
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://freerangestock.com/sample/129484/live-music-concert-with-audience.jpg"
-                    class="card-img-top"
-                    alt="showImage"
-                  />
-                  <h5 class="card-title">Show Name</h5>
-                  <div class="card-body">
-                    <p class="card-text">
-                      Event Date - Location - Event artist - Event status
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <a href="#" class="btn btn-outline-info btn-sm"
-                        >Details</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col col-lg-4">
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg/1200px-Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
-                    class="card-img-top"
-                    alt="showImage"
-                  />
-                  <h5 class="card-title">Show Name</h5>
-                  <div class="card-body">
-                    <p class="card-text">
-                      Event Date - Location - Event artist - Event status
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <a href="#" class="btn btn-outline-info btn-sm"
-                        >Details</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col col-lg-4">
-                <div class="card" style="width: 18rem">
-                  <img
-                    src="https://koreabyme.com/wp-content/uploads/2020/12/Slide1-8-1024x683.jpg"
-                    class="card-img-top"
-                    alt="ShowImage"
-                  />
-                  <h5 class="card-title">Show Name</h5>
-                  <div class="card-body">
-                    <p class="card-text">
-                      Event Date - Location - Event artist - Event status
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <a href="#" class="btn btn-outline-info btn-sm"
-                        >Details</a
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
             <h1>Enter your comments</h1>
           </div>
           <div class="row border-bottom">
@@ -201,7 +134,7 @@
             {% for comment in music_show.comments %}
             <div class="col-md-12">
               <b
-                >{{ comment.user }}
+                >{{ comment.user.name }}
                 <span class="ml-2 text-muted"
                   >{{comment.created_at.strftime("%d/%m/%Y at %H:%M %p")}}</span
                 ></b

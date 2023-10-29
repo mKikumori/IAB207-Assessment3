@@ -23,7 +23,7 @@ class MusicShow(db.Model):
         return f"Name: {self.name}"
     
     
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
@@ -34,7 +34,7 @@ class User(db.Model):
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
 
-    booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
+    #booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
     
     # string print method
     def __repr__(self):
@@ -66,7 +66,7 @@ class Booking(db.Model):
     expiry_date = db.Column(db.String(10), nullable = False)
     emailid = db.Column(db.String(100))
     
-    users = db.relationship('User', backref='Booking')
+    #users = db.relationship('User', backref='Booking')
     
     def __repr__(self):
         return f"Name: {self.name}"

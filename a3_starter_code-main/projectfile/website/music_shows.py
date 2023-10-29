@@ -4,6 +4,7 @@ from .forms import MusicShowForm, CommentForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
+from flask_login import login_required, current_user
 
 # name - first argument is the blueprint name 
 # import name - second argument - helps identify the root url for it 
@@ -16,6 +17,7 @@ def show(id):
     return render_template('music_shows/show.html', music_show=music_show, form=cform)
 
 @destbp.route('/create', methods = ['GET', 'POST'])
+@login_required
 def create():
     print('Method type: ', request.method)
     form = MusicShowForm()
@@ -32,6 +34,7 @@ def create():
     return render_template('music_shows/create.html', form=form)
 
 @destbp.route('/<id>/comment', methods = ['GET', 'POST'])
+@login_required
 def comment(id):
   #here the form is created  form = CommentForm()
   form = CommentForm()
@@ -39,7 +42,7 @@ def comment(id):
   music_show = db.session.scalar(db.select(MusicShow).where(MusicShow.id==id))
 
   if form.validate_on_submit():	#this is true only in case of POST method
-      comment = Comment(text=form.text.data, music_show=music_show)
+      comment = Comment(text=form.text.data, music_show=music_show, user=current_user)
       db.session.add(comment)
       db.session.commit()
       print('Your comment has been added', 'success') 

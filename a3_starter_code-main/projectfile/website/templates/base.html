@@ -50,6 +50,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              {% if current_user.is_authenticated %}
+
+              <a class="nav-link disabled text-muted" href="#">Welcome {{current_user.name}}</a>
+
+              {% endif %}
+
               <li class="nav-item">
                 <a
                   class="nav-link active"
@@ -70,29 +77,48 @@
                 >
                   Actions
                 </a>
+
+                <!-- Register/Login/Logout -->
+                {% if current_user.is_authenticated %}
                 <ul class="dropdown-menu">
                   <li>
                     <a
                       class="dropdown-item"
-                      href="http://127.0.0.1:5000/music_shows/create"
+                      href="{{ url_for('music_show.create') }}"
                       >Create</a
                     >
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a class="dropdown-item" href="http://127.0.0.1:5000/login"
-                      >Login</a
+                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}"
+                      >Log Out</a
                     >
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
+                    <a class="dropdown-item" href="#">Bookings</a>
+                  </li>
+                </ul>
+
+                {% else %}
+
+                <ul class="dropdown-menu">
+                  <li>
                     <a
                       class="dropdown-item"
-                      href="http://127.0.0.1:5000/register"
+                      href="{{ url_for('auth.register') }}"
                       >Register</a
                     >
                   </li>
-                </ul>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="{{ url_for('auth.login') }}"
+                      >Log In</a
+                    >
+                  </li>
+
+                  {% endif %}
+
               </li>
             </ul>
           </div>
