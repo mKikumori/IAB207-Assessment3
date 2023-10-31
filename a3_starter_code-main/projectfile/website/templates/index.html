@@ -33,47 +33,42 @@
       <div>
         Enter the detials of the music event you're after!!
         <div class="container-fluid">
-          <form class="d-flex" role="search">
+          <form class="d-flex" action="{{url_for('main.filter_location')}}">
             <input
               class="form-control me-2"
-              type="search"
+              type="filter_location"
+              name="filter_location"
               placeholder="Location"
               aria-label="Location"
             />
           </form>
-          <form class="d-flex" role="search">
+          <form class="d-flex" action="{{url_for('main.filter_artists')}}">
             <input
               class="form-control me-2"
-              type="search"
-              placeholder="Date"
-              aria-label="Date"
+              type="filter_artists"
+              name="filter_artists"
+              placeholder="Artists"
+              aria-label="Artists"
+            />
+          </form>
+          <form class="d-flex" action="{{url_for('main.filter_genre')}}">
+            <input
+              class="form-control me-2"
+              type="filter_genre"
+              name="filter_genre"
+              placeholder="Genre"
+              aria-label="Genre"
             />
           </form>
         </div>
-      </div>
-      <div class="dropdown">
-        <button
-          class="btn btn-outline-warning dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-        >
-          Genre
-        </button>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">ROCK</a></li>
-          <li><a class="dropdown-item" href="#">POP</a></li>
-          <li><a class="dropdown-item" href="#">COUNTRY</a></li>
-          <li><a class="dropdown-item" href="#">INDIE</a></li>
-          <li><a class="dropdown-item" href="#">K-POP</a></li>
-          <li><a class="dropdown-item" href="#">OTHER</a></li>
-        </ul>
       </div>
     </div>
   </div>
 </div>
 {% endblock %} {% block content %}
 
-<h1 style="color: #f0a51b">ROCK</h1>
+<h1 style="color: #f0a51b">FEATURED SHOWS</h1>
+
 <div class="row">
   <div class="col-sm-6 mb-3 mb-sm-0">
     <div class="card-group" style="padding: 3rem">
