@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 import datetime
+from werkzeug.exceptions import HTTPException
 
 db=SQLAlchemy()
 
@@ -43,10 +44,13 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
     
-    @app.errorhandler(404) 
+    @app.errorhandler(Exception)
     # inbuilt function which takes error as parameter 
-    def not_found(e): 
-      return render_template("404.html", error=e)
+    def handle_exception(e): 
+      if isinstance(e, HTTPException):
+        return render_template("404.html", e=e), 404
+      
+      return render_template("50x.html", e=e), 500
 
     #importing views module here to avoid circular references
     # a common practice.
