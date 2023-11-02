@@ -6,7 +6,7 @@
       <img src="{{music_show.image}}" class="d-block w-100" alt="showImage1" />
       <div>
         <h1>Show Deatils</h1>
-        <h4 style="font-size: medium; color: #ffff">
+        <h4>
           {{music_show.description}}
         </h4>
       </div>
@@ -19,10 +19,11 @@
         >
           <div>
             <h1>{{music_show.name}}</h1>
-            <a class="btn btn-warning" href="#" role="button">Edit</a>
-            <p>- Show date and time</p>
-            <p>- Show location</p>
-            <p>- Show Artists</p>
+            <a class="btn btn-warning" href="{{ url_for('music_show.create') }}" role="edit_show">Edit</a>
+            <p>- Show Start Date and Time: {{music_show.start_date.strftime("%d/%m/%Y at %H:%M %p")}}</p>
+            <p>- Show End Date and Time: {{music_show.end_date.strftime("%d/%m/%Y at %H:%M %p")}}</p>
+            <p>- Show location: {{music_show.location}}</p>
+            <p>- Show Artists: {{music_show.artists}}</p>
           </div>
           <button type="button" class="btn btn-info btn-primary" data-toggle="modal" data-target="#eventModal" style="background-color: #4228d4" style="color:#ffffff">Book</button>
         
@@ -127,7 +128,7 @@
             </nav>
           </div>
           <div>
-            <h1>Enter your comments</h1>
+            <h1>Enter your comments!!</h1>
           </div>
           <div class="row border-bottom">
             {{render_form(form,"/music_shows/{0}/comment".format(music_show.id))}}

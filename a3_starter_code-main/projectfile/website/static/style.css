@@ -39,7 +39,7 @@ footer {
 }
 
 body {
-    background-color: #333;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -51,10 +51,22 @@ main {
 }
 
 h1 {
-    color: #B37B14;
+    color: #000000;
     font-size: 3rem;
     margin-top: 0;
     padding: 50px;
+    font-style: bold;
+}
+
+h2 {
+    color: #000000;
+    margin-top: 0;
+    font-style: bold;
+}
+
+h4 {
+    color: #000000;
+    margin-top: 0;
 }
 
 p {

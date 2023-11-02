@@ -5,6 +5,7 @@ from . import db
 import os
 from werkzeug.utils import secure_filename
 from flask_login import login_required, current_user
+from datetime import datetime
 
 # name - first argument is the blueprint name 
 # import name - second argument - helps identify the root url for it 
@@ -23,8 +24,9 @@ def create():
     form = MusicShowForm()
     if form.validate_on_submit():
         db_file_path = check_upload_file(form)
+        show_status_check = check_status()
         music_show = MusicShow(name=form.name.data, description=form.description.data, image=db_file_path, 
-                               genre=form.genre.data, status=form.status.data, start_date=form.start_date.data, 
+                               genre=form.genre.data, status=show_status_check, start_date=form.start_date.data, 
                                end_date=form.end_date.data, artists=form.artists.data, location=form.location.data, 
                                num_tickets_avaliable=form.num_tickets_avaliable.data, promocode=form.promocode.data)
         db.session.add(music_show)
@@ -62,3 +64,14 @@ def check_upload_file(form):
   #save the file and return the db upload path
   fp.save(upload_path)
   return db_upload_path
+
+def check_status():
+   if MusicShow.query.filter(MusicShow.end_date < datetime.now()):
+      showStatus = "Inactive"
+      return showStatus
+   elif MusicShow.query.filter(MusicShow.end_date > datetime.now()):
+      showStatus = "Open"
+      return showStatus
+   elif MusicShow.query.filter(MusicShow.num_tickets_avaliable == 0):
+      showStatus = "Sold Out"
+      return showStatus

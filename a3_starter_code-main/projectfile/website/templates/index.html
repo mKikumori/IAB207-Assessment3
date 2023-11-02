@@ -1,11 +1,8 @@
 {% extends 'base.html' %} {% block header %}
 <link rel="stylesheet" type="css" href="../static/style.css" />
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <a class="btn btn btn-outline-warning btn-lg" href="#" role="button">
-    Saved Shows</a
-  >
   <button
-    class="btn btn btn-outline-warning btn-lg"
+    class="btn btn btn-outline-dark btn-lg"
     type="button"
     data-bs-toggle="offcanvas"
     data-bs-target="#offcanvasExample"
@@ -67,7 +64,7 @@
 </div>
 {% endblock %} {% block content %}
 
-<h1 style="color: #f0a51b">FEATURED SHOWS</h1>
+<h1>FEATURED SHOWS</h1>
 
 <div class="row">
   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -84,9 +81,10 @@
           <p class="card-text">{{music_show.description}}</p>
         </div>
         <div class="card-footer">
+          <p class="card-text">{{music_show.status}}</p>
           <a
             href="{{url_for('music_show.show', id=music_show.id)}}"
-            class="btn btn-outline-warning btn"
+            class="btn btn-outline-secondary btn"
           >
             View Details
           </a>
