@@ -39,7 +39,7 @@ footer {
 }
 
 body {
-    background-color: #333;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -51,10 +51,22 @@ main {
 }
 
 h1 {
-    color: #B37B14;
+    color: #000000;
     font-size: 3rem;
     margin-top: 0;
     padding: 50px;
+    font-style: bold;
+}
+
+h2 {
+    color: #000000;
+    margin-top: 0;
+    font-style: bold;
+}
+
+h4 {
+    color: #000000;
+    margin-top: 0;
 }
 
 p {
@@ -108,4 +120,59 @@ p {
     .navbar-nav {
         margin-top: 10px;
     }
+}
+
+#ticknumbers{
+    margin-top: 15px;
+}
+
+#price{
+    margin-top: 15px;
+}
+
+#eventname{
+    margin-top: 15px;
+}
+
+#date{
+    margin-top: 15px;
+}
+
+#time{
+    margin-top: 15px;
+}
+
+#location{
+    margin-top: 15px;
+}
+
+#tickets{
+    margin-top: 15px;
+}
+
+#payment{
+    margin-top: 15px;
+}
+
+#ccv{
+    margin-top: 15px;
+}
+
+#expire{
+    margin-top: 15px;
+}
+
+#paymentchoice{
+    margin-top: 15px;
+}
+#Check{
+    margin-top: 15px;
+}
+
+#name{
+    margin-top: 15px;
+}
+
+#email{
+    margin-top: 15px;
 }

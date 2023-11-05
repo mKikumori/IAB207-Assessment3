@@ -10,8 +10,8 @@ class MusicShow(db.Model):
     image = db.Column(db.String(400))
     genre = db.Column(db.String(20))
     status = db.Column(db.String(25))
-    start_date = db.Column(db.String(50))
-    end_date = db.Column(db.String(50))
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
     artists = db.Column(db.String(150))
     location = db.Column(db.String(150))
     num_tickets_avaliable = db.Column(db.Integer)
@@ -23,7 +23,7 @@ class MusicShow(db.Model):
         return f"Name: {self.name}"
     
     
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users' # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
@@ -33,6 +33,8 @@ class User(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
+
+    #booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
     
     # string print method
     def __repr__(self):
@@ -51,3 +53,21 @@ class Comment(db.Model):
     # string print method
     def __repr__(self):
         return f"Comment: {self.text}"
+    
+    
+class Booking(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    ticket_type = db.Column(db.Integer)
+    ticket_number = db.Column(db.Integer, nullable = False)
+    card_number = db.Column(db.Integer, nullable = False)
+    CVS = db.Column(db.Integer, nullable = False)
+    expiry_date = db.Column(db.String(10), nullable = False)
+    emailid = db.Column(db.String(100))
+    
+    #users = db.relationship('User', backref='Booking')
+    
+    def __repr__(self):
+        return f"Name: {self.name}"
+        

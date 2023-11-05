@@ -10,6 +10,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
   <body>
@@ -18,15 +20,21 @@
       <!-- Navbar -->
       <nav class="navbar">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">HeadDiving</a>
-          <form class="d-flex" role="search">
+          <a class="navbar-brand" href="http://127.0.0.1:5000">HeadDiving</a>
+          <form
+            class="form-inline d-flex flex-nowrap"
+            action="{{ url_for('main.search') }}"
+          >
             <input
-              class="form-control me-2"
-              type="search"
+              type="text"
+              name="search"
+              class="form-control flex-grow-1 my-1 mr-sm-2"
               placeholder="Search music shows"
               aria-label="Search"
             />
-            <button class="btn btn-outline-light" type="submit">Search</button>
+            <button type="submit" class="flex-shrink-1 btn btn-outline-light">
+              Submit
+            </button>
           </form>
           <button
             class="navbar-toggler"
@@ -41,19 +49,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="#"
-                  style="color: #fff"
-                  >Home</a
-                >
-              </li>
+
+              {% if current_user.is_authenticated %}
+
+              <a class="nav-link disabled text-muted" style="color: #fff">Welcome {{current_user.name}}</a>
+
+              {% endif %}
+              
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="#"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -61,13 +66,48 @@
                 >
                   Actions
                 </a>
+
+                <!-- Register/Login/Logout -->
+                {% if current_user.is_authenticated %}
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="http://127.0.0.1:5000/music_shows/create">Create</a></li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="{{ url_for('music_show.create') }}"
+                      >Create</a
+                    >
+                  </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="http://127.0.0.1:5000/login">Login</a></li>
+                  <li>
+                    <a class="dropdown-item" href="{{ url_for('auth.logout') }}"
+                      >Log Out</a
+                    >
+                  </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="http://127.0.0.1:5000/register">Register</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Bookings</a>
+                  </li>
                 </ul>
+
+                {% else %}
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="{{ url_for('auth.register') }}"
+                      >Register</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="{{ url_for('auth.login') }}"
+                      >Log In</a
+                    >
+                  </li>
+
+                  {% endif %}
+
               </li>
             </ul>
           </div>

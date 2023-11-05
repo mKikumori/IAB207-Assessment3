@@ -1,153 +1,97 @@
-{% extends 'base.html' %}
-
-{% block header %}
-<link rel="stylesheet" type="css" href="../static/style.css">
+{% extends 'base.html' %} {% block header %}
+<link rel="stylesheet" type="css" href="../static/style.css" />
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a class="btn btn btn-outline-warning btn-lg" href="#"
-        role="button">
-        Saved Shows</a>
-    <button class="btn btn btn-outline-warning btn-lg"
+  <button
+    class="btn btn btn-outline-dark btn-lg"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasExample"
+    aria-controls="offcanvasExample"
+  >
+    Filter
+  </button>
+
+  <div
+    class="offcanvas offcanvas-start"
+    tabindex="-1"
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filters</h5>
+      <button
         type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasExample"
-        aria-controls="offcanvasExample">Filter</button>
-
-    <div class="offcanvas offcanvas-start" tabindex="-1"
-        id="offcanvasExample"
-        aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title"
-                id="offcanvasExampleLabel">Filters</h5>
-            <button type="button" class="btn-close"
-                data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div>
-                Enter the detials of the music event you're
-                after!!
-                <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2"
-                            type="search" placeholder="Location"
-                            aria-label="Location">
-                    </form>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2"
-                            type="search" placeholder="Date"
-                            aria-label="Date">
-                    </form>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button
-                    class="btn btn-outline-warning dropdown-toggle"
-                    type="button" data-bs-toggle="dropdown">
-                    Genre
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">ROCK</a></li>
-                    <li><a class="dropdown-item" href="#">POP</a></li>
-                    <li><a class="dropdown-item" href="#">COUNTRY</a></li>
-                    <li><a class="dropdown-item" href="#">INDIE</a></li>
-                    <li><a class="dropdown-item" href="#">K-POP</a></li>
-                    <li><a class="dropdown-item" href="#">OTHER</a></li>
-                </ul>
-            </div>
-        </div>
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
     </div>
+    <div class="offcanvas-body">
+      <div>
+        Enter the detials of the music event you're after!!
+        <div class="container-fluid">
+          <form class="d-flex" action="{{url_for('main.filter_location')}}">
+            <input
+              class="form-control me-2"
+              type="filter_location"
+              name="filter_location"
+              placeholder="Location"
+              aria-label="Location"
+            />
+          </form>
+          <form class="d-flex" action="{{url_for('main.filter_artists')}}">
+            <input
+              class="form-control me-2"
+              type="filter_artists"
+              name="filter_artists"
+              placeholder="Artists"
+              aria-label="Artists"
+            />
+          </form>
+          <form class="d-flex" action="{{url_for('main.filter_genre')}}">
+            <input
+              class="form-control me-2"
+              type="filter_genre"
+              name="filter_genre"
+              placeholder="Genre"
+              aria-label="Genre"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-{% endblock %}
+{% endblock %} {% block content %}
 
-{% block content %}
-<h1 style="color: #f0a51b;">ROCK</h1>
-    <div class="container-fluid" style="margin: 0 auto;">
-        <div class="row" style="margin: 0;">
-            <div class="col col-lg-3" style="padding: 15px;">
-                <div class="card" style="width: 20rem;">
-                    <img
-                        src="https://koreabyme.com/wp-content/uploads/2020/12/Slide1-8-1024x683.jpg"
-                        class="card-img-top" alt="ShowImage"
-                        style="width: 20rem; height: 18rem;">
-                    <h4 class="card-title">Katanak & The Blue Bottles</h4>
-                    <div class="card-body">
-                        <p class="card-text"
-                            style="font-size: large;">
-                            Event Date - Location - Event artist -
-                            Event
-                            status
-                        </p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="http://127.0.0.1:5000/music_shows/1"
-                                class="btn btn-outline-warning">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-lg-3" style="padding: 15px;">
-                <div class="card"
-                    style="width: 20rem;">
-                    <img
-                        src="https://cdn.vox-cdn.com/thumbor/DxQiPqXQynXBHIVVHFbtqn-OHxs=/575x0:5599x3768/340x255/cdn.vox-cdn.com/uploads/chorus_image/image/71772322/1228002700.0.jpg"
-                        class="card-img-top" alt="ShowImage"
-                        style="width: 20rem; height: 18rem;">
-                    <h4 class="card-title">Show Name</h4>
-                    <div class="card-body">
-                        <p class="card-text"
-                            style="font-size: large;">
-                            Event Date - Location - Event artist -
-                            Event
-                            status
-                        </p>
-                        <div
-                            class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#"
-                                class="btn btn-outline-warning btn">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-lg-3" style="padding: 15px;">
-                <div class="card" style="width: 20rem;">
-                   <img
-                        src="https://freerangestock.com/sample/129484/live-music-concert-with-audience.jpg"
-                        class="card-img-top" alt="showImage"
-                        style="width: 20rem; height: 18rem;">
-                    <h4 class="card-title">Show Name</h4>
-                    <div class="card-body">
-                        <p class="card-text"
-                            style="font-size: large;">
-                            Event Date - Location - Event artist -
-                            Event
-                            status
-                        </p>
-                        <div
-                            class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#"
-                                class="btn btn-outline-warning btn">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col col-lg-3" style="padding: 15px;">
-                <div class="card" style="width: 20rem;">
-                    <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg/1200px-Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
-                        class="card-img-top" alt="showImage"
-                        style="width: 20rem; height: 18rem;">
-                    <h4 class="card-title">Show Name</h4>
-                    <div class="card-body">
-                        <p class="card-text"
-                            style="font-size: large;">
-                            Event Date - Location - Event artist -
-                            Event
-                            status
-                        </p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="#" class="btn btn-outline-warning btn">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<h1>FEATURED SHOWS</h1>
+
+<div class="row">
+  <div class="col-sm-12 mb-3 mb-sm-0">
+    <div class="card-group" style="padding: 5rem">
+      {% for music_show in music_shows %}
+      <div class="card mx-3">
+        <img
+          class="card-img-top"
+          src="{{music_show.image}}"
+          alt="music show picture"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{music_show.name}}</h5>
+          <p class="card-text">{{music_show.description}}</p>
         </div>
+        <div class="card-footer">
+          <p class="card-text">{{music_show.status}}</p>
+          <a
+            href="{{url_for('music_show.show', id=music_show.id)}}"
+            class="btn btn-outline-secondary btn"
+          >
+            View Details
+          </a>
+        </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
+</div>
 {% endblock %}
