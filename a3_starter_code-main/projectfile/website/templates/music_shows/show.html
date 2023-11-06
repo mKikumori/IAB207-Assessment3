@@ -34,12 +34,13 @@
             <p>- Show location: {{music_show.location}}</p>
             <p>- Show Artists: {{music_show.artists}}</p>
           </div>
-          <button
+          <a
             class="btn btn-primary"
             href="{{ url_for('music_show.book') }}"
+            role="book_ticket"
           >
             Book
-          </button>
+          </a>
           <div>
             <p>- Ticket Type 1 (Closest to Stage): $50.00</p>
             <p>- Ticket Type 2 (Near Food Stalls): $45.00</p>
