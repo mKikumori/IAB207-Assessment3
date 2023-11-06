@@ -6,9 +6,7 @@
       <img src="{{music_show.image}}" class="d-block w-100" alt="showImage1" />
       <div>
         <h1>Show Deatils</h1>
-        <h4>
-          {{music_show.description}}
-        </h4>
+        <h4>{{music_show.description}}</h4>
       </div>
     </div>
     <div class="col gap-1 col-lg-7">
@@ -19,94 +17,30 @@
         >
           <div>
             <h1>{{music_show.name}}</h1>
-            <a class="btn btn-warning" href="{{ url_for('music_show.create') }}" role="edit_show">Edit</a>
-            <p>- Show Start Date and Time: {{music_show.start_date.strftime("%d/%m/%Y at %H:%M %p")}}</p>
-            <p>- Show End Date and Time: {{music_show.end_date.strftime("%d/%m/%Y at %H:%M %p")}}</p>
+            <a
+              class="btn btn-warning"
+              href="{{ url_for('music_show.create') }}"
+              role="edit_show"
+              >Edit</a
+            >
+            <p>
+              - Show Start Date and Time:
+              {{music_show.start_date.strftime("%d/%m/%Y at %H:%M %p")}}
+            </p>
+            <p>
+              - Show End Date and Time: {{music_show.end_date.strftime("%d/%m/%Y
+              at %H:%M %p")}}
+            </p>
             <p>- Show location: {{music_show.location}}</p>
             <p>- Show Artists: {{music_show.artists}}</p>
           </div>
-          <button type="button" class="btn btn-info btn-primary" data-toggle="modal" data-target="#eventModal" style="background-color: #4228d4" style="color:#ffffff">Book</button>
-        
-            <div class="modal" id="eventModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Book Tickets</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <p> Fill out the details to confirm booking </p>
-                        <form>
-                          
-                            <div id="name">
-                                <label for="creatorName">Name</label>
-                                <input type="text" id="creatorName" class="form-control" placeholder="Name"/>
-                            </div>
-                     
-                            <div id="email">
-                                <label for="InputEmail">Email address</label>
-                                <input type="email" class="form-control" id="InputEmail" placeholder="Enter email">
-                            </div>
-
-                            <div class="form-group" id="Entrants">
-                              <label for="FormControlSelect">Ticket Type</label>
-                              <select class="form-control" id="FormControlSelect">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-
-                              </select>
-                          </div>
-                                                
-                            <div class="form-group" id="Entrants">
-                                <label for="FormControlSelect">Number of Tickets</label>
-                                <select class="form-control" id="FormControlSelect">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                </select>
-                            </div>
-
-                            
-
-                            
-
-                              <div id="paymentchoice">
-                                <label class="radio-inline"><input type="radio" name="optradio" checked>Visa/Mastercard</label>
-                                
-                            </div>
-
-                            <div id="payment">
-                                <label for="paymentnumber">Card Number</label>
-                                <input type="paymentno" class="form-control" id="paymentnumber" placeholder="0000-0000-0000-0000">
-                            </div>
-
-                            <div id="ccv">
-                                <label for="ccvno">CVS</label>
-                                <input type="ccvnumber" class="form-control" id="ccvno" placeholder="000">
-                            </div>
-
-                            <div id="expire">
-                                <label for="expiry">Expiry Date</label>
-                                <input type="expiryno" class="form-control" id="expiry" placeholder="MM/YY">
-                            </div>
-                          </div>
-                            
-
-                        </form>
-                    </div>
-
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary">Book</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          
+          <a
+            class="btn btn-primary"
+            href="{{ url_for('music_show.book') }}"
+            role="book_ticket"
+          >
+            Book
+          </a>
           <div>
             <p>- Ticket Type 1 (Closest to Stage): $50.00</p>
             <p>- Ticket Type 2 (Near Food Stalls): $45.00</p>

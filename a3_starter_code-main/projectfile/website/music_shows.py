@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from .models import Comment, MusicShow
-from .forms import MusicShowForm, CommentForm
+from .models import Comment, MusicShow, Booking
+from .forms import MusicShowForm, CommentForm, BookingForm
 from . import db
 import os
 from werkzeug.utils import secure_filename
@@ -22,7 +22,6 @@ def show(id):
 @destbp.route('/create', methods=['GET', 'POST'])
 @login_required
 def create():
-    print('Method type: ', request.method)
     form = MusicShowForm()
     if form.validate_on_submit():
         db_file_path = check_upload_file(form)
@@ -35,6 +34,20 @@ def create():
         print('Successfully created new music show', 'success')
         return redirect(url_for('music_show.create'))
     return render_template('music_shows/create.html', form=form)
+
+
+@destbp.route('/book', methods=['GET', 'POST'])
+@login_required
+def book():
+    form = BookingForm()
+    if form.validate_on_submit():
+        book = Booking(name=form.name.data, ticket_type=form.ticket_type.data,
+                       ticket_number=form.ticket_number.data, card_number=form.card_number.data, CVS=form.CVS.data,
+                       expiry_date=form.expiry_date.data, emailid=form.emailid.data)
+        db.session.add(book)
+        db.session.commit()
+        return redirect(url_for('music_show.book'))
+    return render_template('music_shows/book.html', form=form)
 
 
 @destbp.route('/<id>/comment', methods=['GET', 'POST'])

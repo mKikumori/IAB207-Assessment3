@@ -2,6 +2,7 @@ from datetime import datetime
 from flask_login import UserMixin
 from . import db
 
+
 class MusicShow(db.Model):
     __tablename__ = 'music_shows'
     id = db.Column(db.Integer, primary_key=True)
@@ -21,25 +22,25 @@ class MusicShow(db.Model):
 
     def __repr__(self):
         return f"Name: {self.name}"
-    
-    
+
+
 class User(db.Model, UserMixin):
-    __tablename__ = 'users' # good practice to specify table name
+    __tablename__ = 'users'  # good practice to specify table name
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
-	# password should never stored in the DB, an encrypted password is stored
-	# the storage should be at least 255 chars long, depending on your hashing algorithm
+    # password should never stored in the DB, an encrypted password is stored
+    # the storage should be at least 255 chars long, depending on your hashing algorithm
     password_hash = db.Column(db.String(255), nullable=False)
     # relation to call user.comments and comment.created_by
     comments = db.relationship('Comment', backref='user')
 
-    #booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
-    
+    # booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
+
     # string print method
     def __repr__(self):
         return f"Name: {self.name}"
-    
+
 
 class Comment(db.Model):
     __tablename__ = 'comments'
@@ -53,21 +54,20 @@ class Comment(db.Model):
     # string print method
     def __repr__(self):
         return f"Comment: {self.text}"
-    
-    
+
+
 class Booking(db.Model):
     __tablename__ = 'bookings'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    ticket_type = db.Column(db.Integer)
-    ticket_number = db.Column(db.Integer, nullable = False)
-    card_number = db.Column(db.Integer, nullable = False)
-    CVS = db.Column(db.Integer, nullable = False)
-    expiry_date = db.Column(db.String(10), nullable = False)
+    ticket_type = db.Column(db.Integer, nullable=False)
+    ticket_number = db.Column(db.Integer, nullable=False)
+    card_number = db.Column(db.String(19), nullable=False)
+    CVS = db.Column(db.Integer, nullable=False)
+    expiry_date = db.Column(db.String(10), nullable=False)
     emailid = db.Column(db.String(100))
-    
-    #users = db.relationship('User', backref='Booking')
-    
+
+    # users = db.relationship('User', backref='Booking')
+
     def __repr__(self):
         return f"Name: {self.name}"
-        

@@ -1,7 +1,7 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateTimeField, IntegerField, SelectField
+from wtforms.validators import InputRequired, Regexp, Email, EqualTo, Length
 from flask_wtf.file import FileRequired, FileField, FileAllowed
 
 ALLOWED_FILE = {'PNG', 'JPG', 'JPEG', 'png', 'jpg', 'jpeg'}
@@ -59,3 +59,20 @@ class MusicShowForm(FlaskForm):
         'Number of Tickets Avaliable', validators=[InputRequired()])
     promocode = IntegerField('Promocode', validators=[InputRequired()])
     submit = SubmitField("Create")
+
+
+class BookingForm(FlaskForm):
+    name = StringField("Enter the show's name:",
+                       validators=[InputRequired()])
+    ticket_type = SelectField(choices=[1, 2, 3])
+    ticket_number = IntegerField(
+        "Enter the number of tickets wanted:", validators=[InputRequired()])
+    card_number = StringField(
+        "Enter card number:", validators=[InputRequired(), Regexp("^(?:4[0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|[25][1-7][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}|6(?:011|5[0-9][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|3[47][0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|3(?:0[0-5]|[68][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|(?:2131|1800|35\d{3})-[0-9]{4}-[0-9]{4}-[0-9]{4})$",
+                                                                  message="Not valid card number")])
+    CVS = IntegerField("Enter card's VCS:", validators=[InputRequired()])
+    expiry_date = DateTimeField(
+        "Enter card's expiry date (mm/YYYY):", validators=[InputRequired()], format="%m/%Y")
+    emailid = StringField("Enter your email:", validators=[
+        Email("Please enter a valid email")])
+    submit = SubmitField("Book")
