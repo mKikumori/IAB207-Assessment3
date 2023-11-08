@@ -73,5 +73,6 @@ class BookingForm(FlaskForm):
     CVS = IntegerField("Enter card's CCS:", validators=[InputRequired()])
     expiry_date = DateTimeField(
         "Enter card's expiry date (mm/YYYY):", validators=[InputRequired()], format="%m/%Y")
-    emailid = Email("Enter your email", validators=InputRequired())
+    emailid = StringField("Enter your email:", validators=[
+        Email("Please enter a valid email")])
     submit = SubmitField("Book")
