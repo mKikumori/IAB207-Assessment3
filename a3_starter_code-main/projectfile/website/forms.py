@@ -65,14 +65,15 @@ class BookingForm(FlaskForm):
     name = StringField("Enter the show's name:",
                        validators=[InputRequired()])
     ticket_type = SelectField(choices=[1, 2, 3])
+    ticket_type_selection = SelectField(choices=[1, 2, 3])
     ticket_number = IntegerField(
         "Enter the number of tickets wanted:", validators=[InputRequired()])
     card_number = StringField(
         "Enter card number:", validators=[InputRequired(), Regexp("^(?:4[0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|[25][1-7][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}|6(?:011|5[0-9][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|3[47][0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|3(?:0[0-5]|[68][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|(?:2131|1800|35\d{3})-[0-9]{4}-[0-9]{4}-[0-9]{4})$",
+        "Enter card number: (Expected ####-####-####-####)", validators=[InputRequired(), Regexp("^(?:4[0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|[25][1-7][0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{4}|6(?:011|5[0-9][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|3[47][0-9]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}|3(?:0[0-5]|[68][0-9])-[0-9]{4}-[0-9]{4}-[0-9]{4}|(?:2131|1800|35\d{3})-[0-9]{4}-[0-9]{4}-[0-9]{4})$",
                                                                   message="Not valid card number")])
     CVS = IntegerField("Enter card's VCS:", validators=[InputRequired()])
+    CVS = IntegerField("Enter card's CVS: (Expected ####)", validators=[InputRequired()])
     expiry_date = DateTimeField(
         "Enter card's expiry date (mm/YYYY):", validators=[InputRequired()], format="%m/%Y")
     emailid = StringField("Enter your email:", validators=[
-        Email("Please enter a valid email")])
-    submit = SubmitField("Book")
